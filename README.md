@@ -1,6 +1,11 @@
-# 11
+# 格子酒店app
 
-> vue��
+
+```技术栈
+    vue2.0 + vux + vuex + webpack + vue-router
+```   
+
+> vue启动步骤
 
 ## Build Setup
 
