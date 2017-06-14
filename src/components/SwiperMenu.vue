@@ -44,7 +44,7 @@
 	}
 	img{
 		width:100%;
-		height:250px;
+		height:300px;
 	}
 	.show{
 		padding: 10px 0

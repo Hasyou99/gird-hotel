@@ -9,13 +9,11 @@
 			</div>
 			<input type="text" class="search-box" placeholder="关键字/酒店名"/>
 		</div>
-		
-		
-		
+	
 		<div class="menu-list">
 			<ul >
-				<li v-for="h in src">
-					<a href="">
+				<li v-for="h in src" @click="getName" :data-name="h.text">
+					<a :data-name="h.text">
 						<div>
 							<img :src="h.url" alt="">
 							<span>{{h.text}}</span>
@@ -29,22 +27,41 @@
 </template>
 
 <script>
-	
+	import bus from '../utils/bus.js'
 	export default {
 		data(){
 			return{
 				src:[
 					{url:'../../static/img/pro.png',text:'特产'},
-					{url:'../../static/img/jingdian.png',text:"景点门票"},
 					{url:'../../static/img/hotel.png',text:"酒店"},
+					{url:'../../static/img/jingdian.png',text:"景点门票"},
 					{url:'../../static/img/you.png',text:"周边游"},
 					{url:'../../static/img/chi.png',text:"吃喝玩乐"}
-				]
+				],
+				name:''
 			}
 		},
 		props:["list","hotSearch","positionInfo"],
-		mounted(){
-			console.log(this.list)
+		methods:{
+			getName(e){
+				this.name = e.currentTarget.dataset.name
+				bus.res = this.name
+				if(this.name =="特产"){
+					this.$router.push('/goods/detail')
+				}
+				else if(this.name =="酒店"){
+					this.$router.push('/hotel/detail')
+				}
+				else if(this.name =="景点门票"){
+					this.$router.push('/travel/ticket')
+				}
+				else if(this.name =="周边游"){
+					this.$router.push('/tour/around')
+				}
+				else if(this.name =="酒店"){
+					this.$router.push('/hotel/detail')
+				}
+			}
 		}
 	}
 </script>
@@ -91,7 +108,9 @@
 	}
 	img{
 		display:block;
-		margin-bottom:8px
+		margin-bottom:8px;
+		width: 45px;
+		height: 45px;
 	}
 	ul{
 		list-style:none;

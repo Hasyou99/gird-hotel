@@ -27,16 +27,13 @@
 </template>
 
 <script>
-	import bus from "../utils/bus.js";
-
+	import bus from '../utils/bus.js'
 	import HomeHeader from '../components/HomeHeader.vue'
 	import Banner from '../components/Banner.vue'
 	import SwiperMenu from '../components/SwiperMenu.vue'
 	import HotShow from '../components/HotShow.vue'
 
-	import Slider from '../components/Slider.vue'
-	import ResList from '../components/ResList.vue'
-	import {Scroller,LoadMore} from 'vux';
+	import {LoadMore} from 'vux';
 	
 	export default({
 		components:{
@@ -44,9 +41,6 @@
 			Banner,
 			SwiperMenu,
 			HotShow,
-			Slider,
-			ResList,
-			Scroller,
 			LoadMore
 		},
 		data(){

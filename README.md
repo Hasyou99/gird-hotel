@@ -1,7 +1,7 @@
 # 格子酒店app
 
-
-```技术栈
+> 技术栈
+```
     vue2.0 + vux + vuex + webpack + vue-router
 ```   
 

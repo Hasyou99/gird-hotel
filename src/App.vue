@@ -6,15 +6,15 @@
 	    		<img slot="icon" src="../static/img/index1.png"/>
 	    		<span slot="label">首页</span>
 	    	</tabbar-item>
-	    	<tabbar-item link="/nearby">
+	    	<tabbar-item link="/home/nearby">
 	    		<img slot="icon" src="../static/img/index2.png"/>
 	    		<span slot="label">附近</span>
 	    	</tabbar-item>
-	    	<tabbar-item link="/socre">
+	    	<tabbar-item link="/data/score">
 	    		<img slot="icon" src="../static/img/index3.png"/>
 	    		<span slot="label">积分</span>
 	    	</tabbar-item>
-	    	<tabbar-item link="/me">
+	    	<tabbar-item link="/personalCenter/me">
 	    		<img slot="icon" src="../static/img/index4.png" class="fa fa-user-o"/>
 	    		<span slot="label">我的</span>
 	    	</tabbar-item>

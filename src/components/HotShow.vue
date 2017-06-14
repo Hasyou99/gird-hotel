@@ -1,9 +1,9 @@
 <template>
 	<div class="hot">
         <p class="header">热门精选</p>
-        <router-link  v-for="m in hotlist" :to="'/'+ m.ItemID" >
-            <div class="content" @click="getId" :data-index="m.ItemID" :list="goodsDetail">
-                <img :src="m.SmallFullPathImages[0]" width="350" height="234" />
+        <router-link  v-for="m in hotlist" :to="'/home/detail/'+ m.ItemID" >
+            <div class="content"  :data-index="m.ItemID" >
+                <img :src="m.SmallFullPathImages[0]" />
                 <div class="text">
                     <div class="top clearfix">
                         <span>{{m.Title}}</span>
@@ -20,29 +20,9 @@
 </template>
 
 <script>
+    
 	export default { 
 		props:["hotlist"],
-        data(){
-            return{
-                goodsDetail:{}
-            }
-        },
-        methods:{
-            // http://wlifeapi.member.ccshis.com/api/v1/Deal/GetDeal?id=322
-            // 商品详细信息请求
-            goodsAjax(i){
-                this.$http.get('res/api/v1/Deal/GetDeal?id='+i)
-				.then(function(res){
-                    this.goodsDetail = res.data.Data
-					// console.log(this.goodsDetail)
-				}.bind(this))
-            },
-            getId(e){
-                var index = e.currentTarget.dataset.index
-                console.log(index)
-                this.goodsAjax(index)  
-            }
-        }
 	}
 </script>
 
