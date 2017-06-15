@@ -1,28 +1,37 @@
 <template>
 	<div class="tour">
 		<Tabbar></tabbar>
+
+		<div class="content">
+			<swiper :aspect-ratio="500/800" auto dots-position="center">
+				<swiper-item class="swiper-img" v-for="(item, index) in sliderList" :key="index">
+					<img :src="item.SmallFullPathImages[0]">
+				</swiper-item>
+			</swiper>
 			
-		<swiper :aspect-ratio="500/800" auto dots-position="center">
-	    <swiper-item class="swiper-img" v-for="(item, index) in sliderList" :key="index">
-	        <img :src="item.SmallFullPathImages[0]">
-	    </swiper-item>
-    </swiper>
-		
-		<div class="blank"></div>
-		<div class="nav">
-			<span class="round">周边游精选推荐</span>
-			<span class="more">更多></span>
-		</div>
-		<div class="blank"></div>
-		<div class="recom">
-			<div class="list" v-for="r in recomList">
-					<img :src="r.SmallFullPathImages[0]" alt="" class="res-pic"/>
-					<div class="bot">
-						<p>{{r.Title}}</p>
-						<p>{{r.Description}}</p>
-					</div>
+			<div class="blank"></div>
+			<div class="nav">
+				<span class="round">周边游精选推荐</span>
+				<span class="more">更多></span>
 			</div>
-		</div>
+			<div class="blank"></div>
+			<div class="recom">
+				<div class="list" v-for="r in recomList">
+						<img :src="r.SmallFullPathImages[0]" alt="" class="res-pic"/>
+						<div class="bot">
+							<p>{{r.Title}}</p>
+							<p>{{r.Description}}</p>
+						</div>
+				</div>
+			</div>
+
+			<div class="blank"></div>
+			<div class="head">精品自助游</div>
+			<div class="tour-list" v-for="d in datalist">
+				<TourList  :list="d"></TourList>
+			</div>
+		</div>	
+		
 		
 	</div>
 </template>
@@ -30,19 +39,23 @@
 <script>
 	import { Swiper,SwiperItem } from 'vux'
 	import Tabbar from './Tabbar'
+	import TourList from './TourList'
 	export default { 
 		mounted(){
 			this.tourAjax()
+			this.listAjax()
 		},
 		components:{
 			Tabbar,
 			Swiper,
-			SwiperItem
+			SwiperItem,
+			TourList
 		},
 		data(){
 			return {
 				sliderList:[],
-				recomList:[]
+				recomList:[],
+				datalist:[]
 			}
 		},
 		methods:{
@@ -63,8 +76,28 @@
 							}
 						})
 						
-						console.log(this.recomList)
+						// console.log(this.recomList)
 				}.bind(this))
+			},
+
+			// tour-list请求
+			// http://wlifeapi.member.ccshis.com/api/v1/Banner/GetBanners?
+			// bannerPosition=6&itemCount=10&page=0&CityId=70
+
+			listAjax(){
+				this.$http.get('/res/api/v1/Banner/GetBanners',{
+					params:{
+						bannerPosition:6,
+						itemCount:10,
+						page:0,
+						CityId:70
+					}
+				})
+				.then(function(res){ 
+						this.datalist = res.data.Data
+						console.log(this.datalist)
+				}.bind(this))
+
 			}
 		}
 	}
@@ -101,10 +134,16 @@
 	.bot{
 		color: #FFFFFF;
 		position: relative;
-		top: -35px;
+		top: -30px;
 		left: 5px;
 		white-space:nowrap; 
 		overflow:hidden; 
 		text-overflow:ellipsis;
 	}
+	.head{
+		padding: 5px 10px;
+		font-size:16px;
+		color:#666;
+	}
+	
 </style>

@@ -24,7 +24,6 @@
 		border: none;
 		border-bottom: 1px solid #C0C0C0;
 		font-size: 14px;
-		/*background-color: #F3F3F3;*/
 	}
 	button.log{
 		width: 100%;

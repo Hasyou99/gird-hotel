@@ -58,8 +58,8 @@
 				else if(this.name =="周边游"){
 					this.$router.push('/tour/around')
 				}
-				else if(this.name =="酒店"){
-					this.$router.push('/hotel/detail')
+				else if(this.name =="吃喝玩乐"){
+					this.$router.push('/local/happy')
 				}
 			}
 		}

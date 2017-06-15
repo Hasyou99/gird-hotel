@@ -1,5 +1,5 @@
 <template>
-	<div class="good">
+	<div class="good" @click="getDetail">
 		<img :src="good.SmallFullPathImages[0]" alt="" />
 		<div class="text">
 			<p class="title">{{good.Title}}</p>
@@ -16,6 +16,13 @@
 		props:['good'],
 		mounted(){
 			console.log(this.good)
+		},
+		methods:{
+			getDetail(){
+				var id = this.good.ID
+				this.$router.push('/good/detail/'+id+'')
+			}
+			
 		}
 	}
 </script>

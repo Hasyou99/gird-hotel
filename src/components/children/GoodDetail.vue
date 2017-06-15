@@ -20,7 +20,7 @@
 		<div class="compon">
 			<p class="sum">
 				<span>总体评价:</span>
-				<span>{{comList.length}}人评价></span>
+				<span>{{list.RankCount}}人评价></span>
 			</p>
 			<div class="com-list" v-for="m in comList">
 				<p class="one">
@@ -28,14 +28,14 @@
 					<rater v-model="m.Rank" class="rater" slot="value" star="♡" active-color="red" :margin="-5"></rater>
 				</p>
 				<p class="two">{{m.Content}}</p>
-				<p class="three">{{m.CreateTime}}</p>
+				<p class="three">{{m.CreateTime}} <span class="shop">{{m.SpecificationName}}</span></p>
+				
 			</div>
-			
 		</div>
 		<div class="blank"></div>
-		<p class="text">商品详情</p>
+		<p class="head">商品详情</p>
 		<div class="pic" ref="detail">
-				
+			
 		</div>
 		<div class="lblank"></div>
 		<shopping></shopping>
@@ -69,18 +69,19 @@
 			console.log(this.str)
 		},
 		methods:{
-			// http://wlifeapi.member.ccshis.com/api/v1/Deal/GetDeal?id=322
+			//http://wlifeapi.member.ccshis.com/api/v1/Deal/GetDeal?id=94
             // 商品详细信息请求
             goodsAjax(){
                 this.str = this.$http.get('/res/api/v1/Deal/GetDeal?id='+this.$route.params.id)
 
 				.then(function(res){
-                    this.list = res.data.Data
+                   this.list = res.data.Data
                     
                    this.imgList = res.data.Data.FullPathImages
                    
                    this.detail = res.data.Data.Detail
                    this.$refs.detail.innerHTML = this.detail
+                   console.log(this.detail)
 				}.bind(this))
             },
             
@@ -193,12 +194,19 @@
 		height: 10px;
 		background-color: #eee;
 	} 
-	.text{
+	p.head{
 		padding: 15px;
 		font-size: 18px;
 		height: 45px;
+		border-bottom: 1px solid #EEEEEE;
 	}
 	.pic{
+		width: 100%;
 		padding: 5px 10px;
+	}
+	.pic>p>span img{
+		display: block !important;
+		width: 300px ; 
+		height: 80px;
 	}
 </style>

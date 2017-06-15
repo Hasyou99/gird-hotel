@@ -11,6 +11,8 @@ import Goods from '../components/Goods.vue'
 import Hotel from '../components/Hotel.vue'
 import Ticket from '../components/Ticket.vue'
 import Tour from '../components/Tour.vue'
+import Local from '../components/Local.vue'
+import GoodDetail from '../components/children/GoodDetail.vue'
 
 
 Vue.use(Router)
@@ -23,8 +25,12 @@ var router = new Router({
         },
 		{
             path: '/goods/detail',
-            component: Goods
-        },
+            component: Goods,
+      	},
+       	{
+       		path: '/good/detail/:id', 
+       		component: GoodDetail
+       	},
         {
             path: '/hotel/detail',
             component: Hotel
@@ -38,6 +44,11 @@ var router = new Router({
         	path: '/tour/around',
             component: Tour
         },
+        {
+            path: '/local/happy',
+            component: Local 
+        },
+       
         {
             path: '/home',
             component: Home

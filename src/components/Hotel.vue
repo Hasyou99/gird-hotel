@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Tabbar from './Tabbar'
+	import Tabbar from './Tabbar'
 	export default { 
 		mounted(){
 			this.hotelAjax()
